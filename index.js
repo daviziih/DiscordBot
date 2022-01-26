@@ -24,7 +24,7 @@ client.on("ready", () => {
 });
 
 module.exports = { player, client };
-require("./envents")(client);
+require("./events")(client);
 
 client.on("messageCreate", (msg) => {
   if (!msg.guild || msg.author.bot) return;
