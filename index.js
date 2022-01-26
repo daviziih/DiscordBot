@@ -13,14 +13,14 @@ const player = new Player(client, {
   leaveOnStop: true,
   leaveOnEmpty: true,
   leaveOnEmptyCooldown: 5000,
-  autoSelfDeaf: true,
+  autoSelfDeaf: false,
   initialVolume: 50,
   bufferingTimeout: 3000,
 });
 
 client.on("ready", () => {
   console.log("bot is already activated 🤖");
-  client.user.setActivity("Your Song", { type: "LISTENING" });
+  client.user.setActivity("daviziih.tk || !help");
 });
 
 module.exports = { player, client };

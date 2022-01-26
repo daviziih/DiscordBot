@@ -1,7 +1,9 @@
 const { player } = require(".");
 
 module.exports = async (client, msg, args, command) => {
-  if (command === "tocar" || command === "player") {
+  if (command === "tocar" || command === "play") {
+
+    msg.delete();
 
     const channel = msg.member.voice.channel;
     if (!channel)
@@ -29,10 +31,7 @@ module.exports = async (client, msg, args, command) => {
     }
 
     const song = await player
-      .search(search_music, {
-        requestedBy: msg.author,
-      })
-      .then((x) => x.tracks[0]);
+      .search(search_music, { requestedBy: msg.author }).then((x) => x.tracks[0]);
   
     if (!song) return msg.reply(`Erro ao procurar música: ${search_music}!!!`);
     queue.play(song);
