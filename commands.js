@@ -1,12 +1,14 @@
 const { player } = require(".");
 
 module.exports = async (client, msg, args, command) => {
-  if (command === "tocar") {
+  if (command === "tocar" || command === "player") {
+
     const channel = msg.member.voice.channel;
     if (!channel)
       return msg.channel.send("Você precisa entrar no canal de voz!!!");
 
     const search_music = args.join(" ");
+    
     if (!search_music)
       return msg.channel.send("Digite o nome ou link da musica!!!");
 
@@ -31,11 +33,10 @@ module.exports = async (client, msg, args, command) => {
         requestedBy: msg.author,
       })
       .then((x) => x.tracks[0]);
-    client.user.setActivity(song.title, { type: "LISTENING" });
+  
     if (!song) return msg.reply(`Erro ao procurar música: ${search_music}!!!`);
     queue.play(song);
 
-    msg.channel.send({ content: `⏳ | Buscando... **${song.title}**!` });
   } else if (command === "skip") {
     const queue = player.getQueue(msg.guild.id);
     queue.skip();
